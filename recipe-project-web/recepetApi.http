@@ -1,0 +1,153 @@
+# Ändra localhost:4000 till er grupps basurl som ni fått.
+@baseUrl=https://jau21-grupp1-mn2l2rop49wl.sprinto.se
+
+# Hämtar alla recept
+GET {{baseUrl}}/recipes HTTP/1.1
+
+###
+
+# Lägger till ett nytt recept
+POST {{baseUrl}}/recipes HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Mojito",
+    "description": "Mojito är kanske världens mest kända och populära drink, och det med all rätt! Det är den ultimata kombinationen av sött, syrligt & fräscht. Receptet nedan ger enligt oss den bästa mojiton, men det är så klart fritt fram att anpassa efter eget tycke och smak. Kommentera gärna här nedan hur du föredrar att blanda din mojito.",
+    "ratings": [],
+    "imageUrl": "https://drinkoteket.se/wp-content/uploads/mojito-1-860x860.jpg",
+    "timeInMins": 12,
+    "categories": [ "Romdrinkar" ],
+    "instructions": [ "1. Häll ner limejuice och sockerlag i ett glas.",
+"2. Lägg ett knippe mynta (ca 12 st blad) i ena handen och klappa ihop med din andra hand. Detta hjälper till att frigöra myntans aromer. Lägg därefter myntabladen i glaset.",
+"3. Stöt myntabladen försiktigt med en muddlare eller annat trubbigt föremål. De ska inte muddlas för hårt eller krossas så att de går sönder eftersom det kan leda till att drinken blir besk.",
+"4. Häll ner rom och fyll lite mer än halva glaset med krossad is.",
+"5. Rör om med en sked så att allt blandar sig.",
+"6. Häll ner sodavatten och fyll resten av glaset med krossad is.",
+"7. Stoppa i sugrör och garnera med en kvist mynta och eventuellt en limeklyfta. Placera myntakvisten vid sugröret så att du känner doften av myntan vid varje sipp.",
+"8. Njut av din Mojito!",
+"Sockerlagen görs med lika delar rörsocker och vatten (1:1)." ],
+    "ingredients": [
+        {
+            "name": "Ljus rom",
+            "amount": 4,
+            "unit": "cl"
+        },
+        {
+            "name": "Limejuice",
+            "amount": 3,
+            "unit": "cl"
+        },
+        {
+            "name": "Sockerlag",
+            "amount": 3,
+            "unit": "cl"
+        },
+        {
+            "name": "Sodavatten",
+            "amount": 4,
+            "unit": "cl"
+        },
+        {
+            "name": "Mynta"
+        }
+    ]
+}
+
+###
+
+# Lägger till ett nytt recept
+POST {{baseUrl}}/recipes HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Bruscetta",
+    "description": "Att börja med",
+    "ratings": [2, 3, 4, 1, 2, 3],
+    "imageUrl": "https://assets.icanet.se/e_sharpen:80,q_auto,dpr_1.25,w_718,h_718,c_lfill/imagevaultfiles/id_223427/cf_259/korvstroganoff_med_ris.jpg",
+    "timeInMins": 15,
+    "categories": [ "Förrätt", "Italienskt" ],
+    "instructions": [ "Stek brödet", "Hacka tomater och Mozarella", "Lägg på brödet"],
+    "ingredients": [
+        {
+            "name": "Bröd",
+            "amount": 1,
+            "unit": "skiva"
+        },
+        {
+            "name": "Tomat",
+            "amount": 2,
+            "unit": "stycken"
+        }
+    ]
+}
+
+###
+# Söker bland alla recept
+GET {{baseUrl}}/recipes?query=toas HTTP/1.1
+
+###
+
+# Hämtar ett enskilt recept
+GET {{baseUrl}}/recipes/632d9fcb6e7766b37d9837f5 HTTP/1.1
+
+###
+
+# Tar bort ett recept
+DELETE {{baseUrl}}/recipes/632d9fcb6e7766b37d9837f5 HTTP/1.1
+
+###
+
+# Uppdaterar ett recept
+PATCH {{baseUrl}}/recipes/632d9fcb6e7766b37d9837f5 HTTP/1.1
+Content-Type: application/json
+
+{
+  "description": "Gott till apelsinsaft"
+}
+
+###
+
+# Hämtar alla kategorier
+GET {{baseUrl}}/categories HTTP/1.1
+
+###
+
+# Hämtar alla recept i en viss kategori (Förrätt)
+GET {{baseUrl}}/categories/Förrätt/recipes HTTP/1.1
+
+###
+
+# Söker bland recept i en viss kategori
+GET {{baseUrl}}/categories/Förrätt/recipes?query=brus HTTP/1.1
+
+###
+
+# Lägger till ett omdöme (1-5) för ett recept
+POST {{baseUrl}}/recipes/632da30c6e7766b37d983811/ratings
+Content-Type: application/json
+
+{
+    "rating": 1
+}
+###
+
+# Hämtar alla kommentarer för ett recept
+GET {{baseUrl}}/recipes/6330a9fee23753eb7d0ed415/comments
+
+###
+
+# Lägger till en kommentar för ett recept
+POST {{baseUrl}}/recipes/6330a9fee23753eb7d0ed415/comments
+Content-Type: application/json
+
+{
+    "comment": "För mycket salt!",
+    "name": "Bosse"
+}
+
+###
+
+# Tömmer all data i api:et
+GET {{baseUrl}}/clear HTTP/1.1
+
+###
