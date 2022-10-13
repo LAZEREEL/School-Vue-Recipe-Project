@@ -17,6 +17,8 @@ export default {
 </script>
 
 <template>
+
+    <!-- en kommentar -->
     <div class="categoryContainer">
 
         <h1>Kategorier</h1>
