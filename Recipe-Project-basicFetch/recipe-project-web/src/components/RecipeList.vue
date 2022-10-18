@@ -18,7 +18,7 @@ export default {
                 <div>
                     <div class="recipeText">
                         <h1 class="recipeTitle">{{ recipe.title }} {{ recipe.avgRating }}</h1>
-                        <p class="recipeDescription"> {{ recipe.description }} </p>
+                        <p class="recipeDescription"> {{ recipe.description.substring(0, 50) + '...' }} </p>
                         <p class="recipeIngredients">{{recipe.ingredients.length}} Ingredienser | {{recipe.timeInMins}}
                             Minuter</p>
 
