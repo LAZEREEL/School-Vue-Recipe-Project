@@ -1,9 +1,24 @@
 <script setup>
-import TheWelcome from "../components/TheWelcome.vue";
+
+import AllRecepies from "../components/AllRecepies.vue";
+
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+
+  <div class="recipeContainer">
+
+    <AllRecepies />
+    
+  </div>
+
 </template>
+
+<style>
+
+.recipeContainer {
+  display: flex;
+  flex-direction: row;
+
+}
+</style>
