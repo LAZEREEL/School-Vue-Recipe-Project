@@ -14,9 +14,7 @@ import Categories from "../components/Categories.vue";
 
 </template>
 
-
 <style>
-
 
 .recipeContainer {
   display: flex;

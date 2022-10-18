@@ -14,9 +14,7 @@ import AllRecepies from "../components/AllRecepies.vue";
 
 </template>
 
-
 <style>
-
 
 .recipeContainer {
   display: flex;

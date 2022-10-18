@@ -25,10 +25,6 @@ export default {
                     </div>
 
                 </div>
-
-                <!-- <li v-for="category in recipe.categories">
-                {{category}}
-            </li> -->
             </div>
 
         </RouterLink>
@@ -89,9 +85,6 @@ li {
     padding: 10px;
     overflow: hidden;
     margin-bottom: 5px;
-    /* white-space: nowrap; */
-
-
 }
 </style>
   

@@ -1,5 +1,4 @@
 <script>
-/* import RecipeList from "./RecipeList.vue"; */
 export default {
     data() {
         return {

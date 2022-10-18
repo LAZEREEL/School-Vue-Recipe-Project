@@ -1,5 +1,4 @@
 <script>
-/* import { RouterLink, RouterView } from 'vue-router' */
 export default {
     data() {
         return {
@@ -29,8 +28,6 @@ export default {
 
         <ul v-if="fetchedCategories">
             <li v-for="category in fetchedCategories">
-
-                <!-- <h3 class="categoryTitle">{{category.name}} ({{category.count}})</h3> -->
 
                 <h3 class="categoryTitle">
                     <router-link :to="{name: 'categories', params: {categoryId: category.name}}">{{category.name}}
