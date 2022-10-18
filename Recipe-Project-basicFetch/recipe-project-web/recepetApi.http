@@ -91,7 +91,7 @@ GET {{baseUrl}}/recipes?query=toas HTTP/1.1
 ###
 
 # Hämtar ett enskilt recept
-GET {{baseUrl}}/recipes/632d9fcb6e7766b37d9837f5 HTTP/1.1
+GET {{baseUrl}}/recipes/633d7a7f91dc8ff8a20d00cc HTTP/1.1
 
 ###
 
@@ -116,7 +116,7 @@ GET {{baseUrl}}/categories HTTP/1.1
 ###
 
 # Hämtar alla recept i en viss kategori (Förrätt)
-GET {{baseUrl}}/categories/Förrätt/recipes HTTP/1.1
+GET {{baseUrl}}/categories/Vodkadrinkar/recipes HTTP/1.1
 
 ###
 

@@ -1,6 +1,6 @@
 <script setup>
 
-import AllRecepies from "../components/AllRecepies.vue";
+import Categories from "../components/Categories.vue";
 
 </script>
 
@@ -8,7 +8,7 @@ import AllRecepies from "../components/AllRecepies.vue";
 
   <div class="recipeContainer">
 
-    <AllRecepies />
+    <Categories />
     
   </div>
 

@@ -1,7 +1,6 @@
 <script setup>
 
 import AllRecepies from "../components/AllRecepies.vue";
-
 </script>
 
 <template>
