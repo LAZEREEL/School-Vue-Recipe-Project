@@ -22,15 +22,16 @@ export default {
 
         <h1>Kategorier</h1>
 
-        <h3>
-            <RouterLink to="/">Visa alla Kategorier</RouterLink>
+        <h3 class="categoryTitle">
+            <RouterLink to="/">Alla Kategorier</RouterLink>
         </h3>
 
         <ul v-if="fetchedCategories">
             <li v-for="category in fetchedCategories">
 
                 <h3 class="categoryTitle">
-                    <router-link :to="{name: 'categories', params: {categoryId: category.name}}">{{category.name}}
+                    <router-link class="categoryLink" :to="{name: 'categories', params: {categoryId: category.name}} ">
+                        {{category.name}}
                         ({{category.count}})</router-link>
                 </h3>
 
@@ -41,7 +42,6 @@ export default {
 </template>
 
 <style>
-
 .categoryContainer {
     font-family: 'Courier New', Courier, monospace;
     font-size: 15px;
@@ -56,19 +56,44 @@ ul {
     padding-left: 0;
 }
 
+
+
+/*  .allCategorieslink a{
+    text-decoration: none;
+    background-color: rgb(175, 199, 243);
+    font-weight: lighter;
+}  */
+
 .categoryTitle {
-    text-decoration: none;
-    
+    font-weight: lighter;
 }
 
-.categoryTitle:hover {
-    background-color: red;
+.categoryTitle a {
     text-decoration: none;
-    cursor: pointer;
+    color: black;
+    font-weight: lighter;
 }
 
-.categoryTitle:active {
+.categoryTitle a:active {
+    text-decoration: none;
+    color: black;
     font-weight: bold;
-    text-decoration: none;
+}
+
+.categoryTitle a:hover {
+    /* background-color: rgb(216, 228, 248); */
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+a.router-link-active {
+    background-color: rgb(175, 199, 243);
+
+}
+
+a.router-link-exact-active {
+
+    font-weight: 600;
+
 }
 </style> 
