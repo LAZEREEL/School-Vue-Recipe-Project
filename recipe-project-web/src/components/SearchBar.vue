@@ -16,5 +16,5 @@ export default {
 </script>
 
 <template>
-    <input type="text" @input="changeMessage" placeholder="Search"/>
+    <input type="text" @input="changeMessage" placeholder="Sök"/>
 </template>
