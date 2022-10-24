@@ -93,7 +93,7 @@ a {
   border-style: ridge;
   border-radius: 10px;
 
-  background-color: lightgray;
+  background-color: lightgrey;
   border: solid;
   margin: 10px;
 }
