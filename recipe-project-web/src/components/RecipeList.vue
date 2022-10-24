@@ -23,10 +23,12 @@ export default {
   
 <template>
 
+    <search-bar @messageChanged="message = $event"></search-bar>
+
     <div class="recipeDisplay">
 
         <RouterLink to="/">
-            <div class="listCard" v-for="recipe in listOfRecipes" :key="recipe">
+            <div class="listCard" v-for="recipe in filteredListOfRecipes()" :key="recipe">
 
                 <img class="recipeImage" :src=recipe.imageUrl alt="recipeImage">
 
