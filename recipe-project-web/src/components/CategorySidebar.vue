@@ -1,62 +1,66 @@
 <script>
 export default {
-    data() {
-        return {
-            fetchedCategories: null,
-
-        }
-    },
-    created() {
-        fetch("https://jau21-grupp1-mn2l2rop49wl.sprinto.se/categories")
-            .then(response => response.json())
-            .then(data => this.fetchedCategories = data)
-            .catch(error => console.log("Error: " + error));
-    },
-
-}
+  data() {
+    return {
+      fetchedCategories: null,
+    };
+  },
+  created() {
+    fetch("https://jau21-grupp1-mn2l2rop49wl.sprinto.se/categories")
+      .then((response) => response.json())
+      .then((data) => (this.fetchedCategories = data))
+      .catch((error) => console.log("Error: " + error));
+  },
+  /*  components: { SearchBar } */
+};
 </script>
 
 <template>
+  <div class="categoryContainer">
+    <h1>Kategorier</h1>
 
-    <div class="categoryContainer">
+    <h3 class="categoryTitle">
+      <RouterLink class="allCategoriesLink" to="/">Alla Kategorier</RouterLink>
+    </h3>
 
-        <h1>Kategorier</h1>
-
+    <ul v-if="fetchedCategories">
+      <li v-for="category in fetchedCategories">
         <h3 class="categoryTitle">
-            <RouterLink to="/">Alla Kategorier</RouterLink>
+          <router-link
+            class="categoryLink"
+            :to="{ name: 'categories', params: { categoryId: category.name } }"
+          >
+            {{ category.name }}
+            ({{ category.count }})</router-link
+          >
         </h3>
-
-        <ul v-if="fetchedCategories">
-            <li v-for="category in fetchedCategories">
-
-                <h3 class="categoryTitle">
-                    <router-link class="categoryLink" :to="{name: 'categories', params: {categoryId: category.name}} ">
-                        {{category.name}}
-                        ({{category.count}})</router-link>
-                </h3>
-
-            </li>
-
-        </ul>
-    </div>
+      </li>
+    </ul>
+  </div>
 </template>
 
-<style>
+<style scoped>
 .categoryContainer {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 15px;
-    text-align: center;
-    width: 200px;
-    border-style: ridge;
-    height: 100vh;
-    padding-left: 0px;
+  background-color: lightgrey;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
+  text-align: center;
+  width: 250px;
+  border-style: ridge;
+  border-color: black;
+  height: 100vh;
+  padding-left: 0px;
+  margin-top: 10px;
+  border-radius: 10px;
 }
 
 ul {
-    padding-left: 0;
+  padding-left: 0;
 }
 
-
+li {
+  list-style: none;
+}
 
 /*  .allCategorieslink a{
     text-decoration: none;
@@ -65,35 +69,34 @@ ul {
 }  */
 
 .categoryTitle {
-    font-weight: lighter;
+  font-weight: lighter;
 }
 
 .categoryTitle a {
-    text-decoration: none;
-    color: black;
-    font-weight: lighter;
+  text-decoration: none;
+  color: black;
+  font-weight: lighter;
 }
 
 .categoryTitle a:active {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
 }
 
 .categoryTitle a:hover {
-    /* background-color: rgb(216, 228, 248); */
-    text-decoration: underline;
-    font-weight: bold;
+  /* background-color: rgb(216, 228, 248); */
+  text-decoration: underline;
+  font-weight: bold;
 }
 
-a.router-link-active {
+/* a.router-link-active {
     background-color: rgb(175, 199, 243);
 
-}
+} */
 
 a.router-link-exact-active {
-
-    font-weight: 600;
-
+  font-weight: 600;
+  font-size: 40;
 }
-</style> 
+</style>
