@@ -1,6 +1,7 @@
 <script setup>
 
 import AllRecepies from "../components/AllRecepies.vue";
+import SearchBar from "../components/SearchBar.vue";
 
 </script>
 
@@ -19,6 +20,7 @@ import AllRecepies from "../components/AllRecepies.vue";
 .recipeContainer {
   display: flex;
   flex-direction: row;
+  text-decoration: none;
 
 }
 </style>

@@ -6,10 +6,11 @@ import Categories from "../components/Categories.vue";
 
 <template>
 
+
   <div class="recipeContainer">
 
     <Categories />
-    
+
   </div>
 
 </template>

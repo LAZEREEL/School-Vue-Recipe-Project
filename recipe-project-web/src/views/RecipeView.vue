@@ -1,20 +1,23 @@
 <script setup>
 
-import AllRecepies from "../components/AllRecepies.vue";
+import Recipe from "../components/Recipe.vue";
+
+
 </script>
 
 <template>
 
-  <div class="recipeContainer">
+  <!-- <h1>Här har jag klickat på ett recept</h1> -->
 
-    <AllRecepies />
-    
-  </div>
+  
+
+    <Recipe />
+
+  
 
 </template>
 
 <style>
-
 .recipeContainer {
   display: flex;
   flex-direction: row;

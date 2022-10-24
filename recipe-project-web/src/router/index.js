@@ -19,8 +19,8 @@ const router = createRouter({
     }
      ,
     {
-      path: "/recipes/:recipeId",
-      name: "recipes",
+      path: "/recipe/:recipeId",
+      name: "recipe",
       props: true,
       component: RecipeView
     } 

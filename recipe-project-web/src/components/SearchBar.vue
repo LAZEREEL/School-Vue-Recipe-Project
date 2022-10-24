@@ -1,36 +1,32 @@
 <script>
 export default {
-    props: ['searchBarListOfRecipes'],
-    data() {
-        return {
-            searchBarInput: null,
-        }
+  emits: ["messageChanged"],
+  data() {
+    return {
+      message: "",
+    };
+  },
+  methods: {
+    changeMessage(event) {
+      this.message = event.target.value;
+      this.$emit("messageChanged", this.message);
     },
-    methods: {
-        filteredListOfRecipes() {
-            return this.searchBarListOfRecipes.filter(recipe => recipe.title.toLowerCase().includes(this.searchBarInput.toLowerCase()));
-        }
-    }
-}
+  },
+};
 </script>
 
 <template>
-
-    <input type="text" v-model="searchBarInput" placeholder="Search" />
-    <button type="button" @click="filteredListOfRecipes">Search</button>
-
-    <!-- <ul>
-        <li v-for="recipe in filteredListOfRecipes" :key="recipe">
-            {{ recipe.title }}
-            {{ recipe.description.substring(0, 50) + '...' }}
-            {{ recipe.avgRating }}
-        <li v-for="category in recipe.categories">
-            {{category}}
-        </li>
-        <img :src=recipe.imageUrl alt="recipeImage" width="200">
-        </li>
-    </ul> -->
-    <!-- <div class="item error" v-if="input&&!filteredList().length">
-        <p>No results found!</p>
-    </div> -->
+  <input class="input" type="text" @input="changeMessage" placeholder=" Sök" />
 </template>
+<style scoped>
+.input {
+  width: 800px;
+  height: 40px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 20px;
+  background-color: lightgrey;
+  border: ridge;
+  border-radius: 10px;
+  border-color: black;
+}
+</style>
