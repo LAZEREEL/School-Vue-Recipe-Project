@@ -1,7 +1,22 @@
 
 <script>
 export default {
-    props: ['listOfRecipes']
+    props: ['listOfRecipes'],
+    components: { SearchBar },
+    data() {
+        return {
+            message: '',
+        }
+    },
+    methods: {
+        filteredListOfRecipes() {
+            if (this.message === "") {
+                return this.listOfRecipes
+            } else {
+                return this.listOfRecipes.filter(recipe => recipe.title.toLowerCase().includes(this.message.toLowerCase()));
+            }
+        }
+    }
 }
 
 </script>
