@@ -1,16 +1,14 @@
 <script setup>
 import { RouterView } from "vue-router";
 import CategorySidebar from "./components/CategorySidebar.vue";
-import Header from "./components/Header.vue";
 
 </script>
 
 <template>
 
   <div class="header">
-
-    <Header />
-
+    <RouterLink to="/" style="text-decoration: none"
+      ><h1>Drinkomania</h1></RouterLink>
   </div>
 
 
@@ -37,13 +35,19 @@ body {
 
 }
 
-.searchBar {
-  display: flex;
-  justify-content: center;
-
-}
-
 li {
   list-style: none;
+}
+
+.header {
+  width: auto;
+  height: 90px;
+  font-size: 40px;
+  text-align: center;
+}
+.header h1 {
+  color: antiquewhite;
+  margin-top: 0%;
+  font-family: 'Courier New', Courier, monospace;
 }
 </style> 
