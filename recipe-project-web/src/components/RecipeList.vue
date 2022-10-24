@@ -1,5 +1,6 @@
 
 <script>
+import SearchBar from './SearchBar.vue';
 export default {
     props: ['listOfRecipes'],
     components: { SearchBar },
