@@ -4,6 +4,7 @@ export default {
     methods: {
         starRating(starIndex) {
             let averageRating = Math.round(this.recipe.avgRating);
+            console.log(this.recipe)
             if (starIndex <= averageRating) {
                 return true;
             } else if (starIndex > averageRating) {

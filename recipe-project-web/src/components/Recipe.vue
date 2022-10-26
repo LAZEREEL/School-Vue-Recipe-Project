@@ -29,7 +29,7 @@ export default {
         <div v-if="!singleRecipe">No recipe found!</div>
 
         <div v-else class="recipeInfo">
-          {{ this.singleRecipe.ratings }} STJÄRNOR |
+          RATING |
           {{ this.singleRecipe.ingredients.length }} INGREDIENSER |
           {{ this.singleRecipe.timeInMins }} MINUTER
         </div>
