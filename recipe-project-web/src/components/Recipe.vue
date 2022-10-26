@@ -21,15 +21,61 @@ export default {
 <template>
   <div v-if="!singleRecipe">No recipe found!</div>
   <div v-else class="recipeRecipeContainer">
-    <img class="recipeImage" :src="singleRecipe.imageUrl" alt="recipeImage" />
-    <h2>{{ this.singleRecipe.title }}</h2>
-    <div class="recipeText"> {{ this.singleRecipe.description }}
-    <br />
-    {{ this.singleRecipe.instructions }}
-    </div>
+    <div class="recipeInfoBox">
+      <div class="recipeDesc">
+        <h1>{{ this.singleRecipe.title }}</h1>
+        {{ this.singleRecipe.description }} <br />
 
-    <div v-for="ingredient in this.singleRecipe.ingredients" :key="id">
-      <p>{{ ingredient.name }} {{ ingredient.amount }} {{ ingredient.unit }}</p>
+        <div v-if="!singleRecipe">No recipe found!</div>
+
+        <div v-else class="recipeInfo">
+          {{ this.singleRecipe.ratings }} STJÄRNOR |
+          {{ this.singleRecipe.ingredients.length }} INGREDIENSER |
+          {{ this.singleRecipe.timeInMins }} MINUTER
+        </div>
+      </div>
+      <img class="recipeImage" :src="singleRecipe.imageUrl" alt="recipeImage" />
+    </div>
+    <div class="line"></div>
+
+    <div style="border-bottom: 1px solid white"></div>
+    <div class="instructionsIngredients">
+      <div class="ingredients">
+        <b>Ingrienser:</b>
+        <ul style="margin-left: -30px">
+          <li
+            v-for="ingredient in this.singleRecipe.ingredients"
+            :key="ingredient.id"
+          >
+            {{ ingredient.name }} {{ ingredient.amount }} {{ ingredient.unit }}
+          </li>
+        </ul>
+      </div>
+      <hr class="vertical" />
+      <div v-if="!singleRecipe">No recipe found!</div>
+      <div v-else class="instructions">
+        <b>Gör så här:</b>
+        <ul style="margin-left: -30px">
+          <li
+            v-for="instruction in this.singleRecipe.instructions"
+            :key="instruction.id"
+          >
+            {{ instruction }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="line"></div>
+    <br />
+    <div class="rating">
+      <b>Vad tyckte du om receptet?</b>
+      <p>Klicka på en stjärna för att ge ditt betyg!</p>
+    </div>
+    <br />
+    <div class="line"></div>
+    <br />
+    <div>
+      <b>Kommentarer</b>
     </div>
   </div>
 </template>
@@ -38,22 +84,72 @@ export default {
 .recipeRecipeContainer {
   display: flex;
   flex-direction: column;
-  width: 640px;
+  width: 800px;
   align-items: center;
   margin-left: 10px;
-  background-color:rgba(87, 95, 94, 0.622);
-  border-radius: 120px;
+  background-color: lightgrey;
+  border-radius: 10px;
+  border: ridge;
+  border-color: black;
+  font-family: "Courier New", Courier, monospace;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+h1 {
+  margin-top: 0px;
 }
 
 .recipeImage {
-    margin-top: 20px;
-  width: 600px;
-  height: 600px;
-  border-radius: 100px;
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
 }
 
-.recipeText {
-    margin: 20px;
-    text-align: center;
+.recipeInfoBox {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  text-align: center;
+}
+
+.recipeDesc {
+  text-align: center;
+  padding-right: 20px;
+  padding: 10px;
+}
+
+.recipeInfo {
+  text-align: center;
+  padding-right: 20px;
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.instructionsIngredients {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
+
+.ingredients {
+  width: 25%;
+}
+
+.instructions {
+  width: 75%;
+}
+
+.line {
+  border-top: 2px ridge grey;
+  width: 95%;
+}
+
+.vertical {
+  margin: 20px;
+}
+
+.rating {
+  text-align: center;
 }
 </style>
