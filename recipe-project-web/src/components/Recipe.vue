@@ -1,5 +1,7 @@
 <script>
+import DisplayStarRating from "./DisplayStarRating.vue";
 export default {
+  components: { DisplayStarRating },
   data() {
     return {
       singleRecipe: null,
@@ -14,68 +16,68 @@ export default {
       .then((data) => (this.singleRecipe = data))
       .catch((error) => console.log("Error: " + error));
   },
-  // components: { RecipeList }
+  computed: {
+    recipe() {
+      return this.singleRecipe;
+    }
+  }
 };
 </script>
 
 <template>
-  <div v-if="!singleRecipe">No recipe found!</div>
-  <div v-else class="recipeRecipeContainer">
-    <div class="recipeInfoBox">
-      <div class="recipeDesc">
-        <h1>{{ this.singleRecipe.title }}</h1>
-        {{ this.singleRecipe.description }} <br />
+  <div>
+    <div v-if="!singleRecipe">No recipe found!</div>
+    <div v-else class="recipeRecipeContainer">
+      <div class="recipeInfoBox">
+        <div class="recipeDesc">
+          <h1>{{ this.singleRecipe.title }}</h1>
+          {{ this.singleRecipe.description }} <br />
 
+          <div v-if="!singleRecipe">No recipe found!</div>
+
+          <div v-else class="recipeInfo">
+            <display-star-rating :recipe=recipe></display-star-rating> |
+            {{ this.singleRecipe.ingredients.length }} INGREDIENSER |
+            {{ this.singleRecipe.timeInMins }} MINUTER
+          </div>
+        </div>
+        <img class="recipeImage" :src="singleRecipe.imageUrl" alt="recipeImage" />
+      </div>
+      <div class="line"></div>
+
+      <div style="border-bottom: 1px solid white"></div>
+      <div class="instructionsIngredients">
+        <div class="ingredients">
+          <b>Ingrienser:</b>
+          <ul style="margin-left: -30px">
+            <li v-for="ingredient in this.singleRecipe.ingredients" :key="ingredient.id">
+              {{ ingredient.name }} {{ ingredient.amount }} {{ ingredient.unit }}
+            </li>
+          </ul>
+        </div>
+        <hr class="vertical" />
         <div v-if="!singleRecipe">No recipe found!</div>
-
-        <div v-else class="recipeInfo">
-          RATING |
-          {{ this.singleRecipe.ingredients.length }} INGREDIENSER |
-          {{ this.singleRecipe.timeInMins }} MINUTER
+        <div v-else class="instructions">
+          <b>Gör så här:</b>
+          <ul style="margin-left: -30px">
+            <li v-for="instruction in this.singleRecipe.instructions" :key="instruction.id">
+              {{ instruction }}
+            </li>
+          </ul>
         </div>
       </div>
-      <img class="recipeImage" :src="singleRecipe.imageUrl" alt="recipeImage" />
-    </div>
-    <div class="line"></div>
-
-    <div style="border-bottom: 1px solid white"></div>
-    <div class="instructionsIngredients">
-      <div class="ingredients">
-        <b>Ingrienser:</b>
-        <ul style="margin-left: -30px">
-          <li
-            v-for="ingredient in this.singleRecipe.ingredients"
-            :key="ingredient.id"
-          >
-            {{ ingredient.name }} {{ ingredient.amount }} {{ ingredient.unit }}
-          </li>
-        </ul>
+      <div class="line"></div>
+      <br />
+      <div class="rating">
+        <b>Vad tyckte du om receptet?</b>
+        <p>Klicka på en stjärna för att ge ditt betyg!</p>
       </div>
-      <hr class="vertical" />
-      <div v-if="!singleRecipe">No recipe found!</div>
-      <div v-else class="instructions">
-        <b>Gör så här:</b>
-        <ul style="margin-left: -30px">
-          <li
-            v-for="instruction in this.singleRecipe.instructions"
-            :key="instruction.id"
-          >
-            {{ instruction }}
-          </li>
-        </ul>
+      <br />
+      <div class="line"></div>
+      <br />
+      <div>
+        <b>Kommentarer</b>
       </div>
-    </div>
-    <div class="line"></div>
-    <br />
-    <div class="rating">
-      <b>Vad tyckte du om receptet?</b>
-      <p>Klicka på en stjärna för att ge ditt betyg!</p>
-    </div>
-    <br />
-    <div class="line"></div>
-    <br />
-    <div>
-      <b>Kommentarer</b>
     </div>
   </div>
 </template>
@@ -151,5 +153,9 @@ h1 {
 
 .rating {
   text-align: center;
+}
+
+.checked {
+  color: orange;
 }
 </style>

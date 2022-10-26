@@ -1,10 +1,10 @@
 <script>
 export default {
+    inheritAttrs: false,
     props: ["recipe"],
     methods: {
         starRating(starIndex) {
             let averageRating = Math.round(this.recipe.avgRating);
-            console.log(this.recipe)
             if (starIndex <= averageRating) {
                 return true;
             } else if (starIndex > averageRating) {
@@ -25,6 +25,6 @@ export default {
 
 <style scoped>
 .checked {
-  color: orange;
+    color: orange;
 }
 </style>
