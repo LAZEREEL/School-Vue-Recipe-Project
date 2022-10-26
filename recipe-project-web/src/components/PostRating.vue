@@ -2,8 +2,9 @@
 export default {
     props: ["recipe"],
     methods: {
-        test(starIndex) {
+        postRating(starIndex) {
             console.log(starIndex)
+
         }
     },
 }
@@ -11,7 +12,7 @@ export default {
 
 <template>
     <div class="allStarsContainer">
-        <span class="starContainer" v-for="starIndex in [1, 2, 3, 4, 5]" @click="test(starIndex)">
+        <span class="starContainer" v-for="starIndex in [1, 2, 3, 4, 5]" @click="postRating(starIndex)">
             <i class="fa fa-star"></i>
         </span>
     </div>
