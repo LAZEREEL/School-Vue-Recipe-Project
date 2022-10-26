@@ -1,5 +1,7 @@
 <script>
+import PostRating from "./PostRating.vue";
 export default {
+  components: { PostRating },
   data() {
     return {
       singleRecipe: null,
@@ -31,7 +33,9 @@ export default {
     <div v-for="ingredient in this.singleRecipe.ingredients" :key="id">
       <p>{{ ingredient.name }} {{ ingredient.amount }} {{ ingredient.unit }}</p>
     </div>
+    <post-rating :recipe=recipe></post-rating>
   </div>
+
 </template>
 
 <style scoped>
