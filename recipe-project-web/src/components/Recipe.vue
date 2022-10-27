@@ -1,6 +1,8 @@
 <script>
+import PostRating from "./PostRating.vue";
 import DisplayStarRating from "./DisplayStarRating.vue";
 export default {
+  components: { PostRating },
   components: { DisplayStarRating },
   data() {
     return {
@@ -79,7 +81,9 @@ export default {
         <b>Kommentarer</b>
       </div>
     </div>
+    <post-rating :recipe=recipe></post-rating>
   </div>
+
 </template>
 
 <style scoped>
