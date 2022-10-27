@@ -2,8 +2,7 @@
 import PostRating from "./PostRating.vue";
 import DisplayStarRating from "./DisplayStarRating.vue";
 export default {
-  components: { PostRating },
-  components: { DisplayStarRating },
+  components: { PostRating, DisplayStarRating },
   data() {
     return {
       singleRecipe: null,
@@ -73,6 +72,7 @@ export default {
       <div class="rating">
         <b>Vad tyckte du om receptet?</b>
         <p>Klicka på en stjärna för att ge ditt betyg!</p>
+        <post-rating :recipe=recipe></post-rating>
       </div>
       <br />
       <div class="line"></div>
@@ -80,8 +80,7 @@ export default {
       <div>
         <b>Kommentarer</b>
       </div>
-    </div>
-    <post-rating :recipe=recipe></post-rating>
+    </div> 
   </div>
 
 </template>
