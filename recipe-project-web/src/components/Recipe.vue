@@ -1,8 +1,10 @@
 <script>
 import PostRating from "./PostRating.vue";
 import DisplayStarRating from "./DisplayStarRating.vue";
+import CommentSection from "./CommentSection.vue"
+
 export default {
-  components: { PostRating, DisplayStarRating },
+  components: { PostRating, DisplayStarRating, CommentSection},
   data() {
     return {
       singleRecipe: null,
@@ -78,11 +80,13 @@ export default {
       <div class="line"></div>
       <br />
       <div>
-        <b>Kommentarer</b>
+
+        <CommentSection/>
       </div>
+
     </div> 
   </div>
-
+  
 </template>
 
 <style scoped>
