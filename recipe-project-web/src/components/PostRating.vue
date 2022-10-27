@@ -3,9 +3,20 @@ export default {
     props: ["recipe"],
     methods: {
         postRating(starIndex) {
+            console.log(this.recipe)
             console.log(starIndex)
-
-        }
+        //     fetch('https://jau21-grupp1-mn2l2rop49wl.sprinto.se/recipes/' + this.recipe._id + "/ratings", {
+        //         method: 'POST',
+        //         rating: starIndex,
+        //     })
+        //         .then((response) => response.json())
+        //         .then((result) => {
+        //             console.log('Success:', result);
+        //         })
+        //         .catch((error) => {
+        //             console.error('Error:', error);
+        //         });
+        // }
     },
 }
 </script>
