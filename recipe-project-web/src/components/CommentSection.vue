@@ -1,3 +1,5 @@
+<form @submit.prevent="postCommentMethod"></form>
+
 <script>
 export default {
     data() {
@@ -19,7 +21,7 @@ export default {
                 console.log('nu körs watchern i AllCommentsForRecipe.vue');
                 this.selectedRecipeIdOne = toParams.recipeId;
                 this.selectedRecipeIdTwo = toParams.recipeId;
-                // console.log('this.selectedRecipeId är: ' + this.selectedRecipeId)
+
             },
             //Gör att recipeId-routern ändras med nytt innehåll även första gången.
             { immediate: true }
@@ -30,7 +32,7 @@ export default {
     },
     methods: {
         getCommentsMethod() {
-            // console.log('utskrift this.selectedRecipeId ' + this.selectedRecipeId);
+            console.log('Nu körs getCommentsMethod')
             fetch("https://jau21-grupp1-mn2l2rop49wl.sprinto.se/recipes/" + this.selectedRecipeIdOne + "/comments")
                 .then(response => response.json())
                 .then(data => {
@@ -41,9 +43,10 @@ export default {
             return this.comments;
         },
         postCommentMethod() {
-            console.log('nu körs postComment')
-            console.log(this.comment)
-            console.log(this.name)
+
+console.log(this.selectedRecipeIdTwo)
+console.log(this.name)
+console.log(this.comment)
             fetch("https://jau21-grupp1-mn2l2rop49wl.sprinto.se/recipes/" + this.selectedRecipeIdTwo + "/comments", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json; charset=UTF-8' },
@@ -53,9 +56,13 @@ export default {
                 .then(response => response.json())
                 .then(data => {
                     this.postComment = data
-                    console.log('här är data i Comments.vue fetch post: ' + data)
+
+                    console.log('Success.')
+                    this.getCommentsMethod();
                 })
                 .catch(error => console.log("Error: " + error));
+
+
         }
     }
 }
@@ -66,23 +73,24 @@ export default {
 
     <div class="container">
         <h2>Lämna en Kommentar</h2>
-        <form>
+        
             <div class="btn">
-            <input id='comment' placeholder='Lämna din Kommentar här' name='comment' v-model='comment' />
-            <input id='name' placeholder='Ditt namn' name='name' v-model='name' />
-            
-                <button v-if="this.selectedRecipeIdTwo" @click="postCommentMethod()">Skicka</button>
+            <input id='comment' placeholder='Lämna din Kommentar här' name='comment' v-model='comment'/>
+            <input id='name' placeholder='Ditt namn' name='name' v-model='name'/>
+
+                <button v-if="this.selectedRecipeIdTwo" @click="postCommentMethod">Skicka</button>
                 <button>Avbryt</button>
+
             </div>
-        </form>
+        
     </div>
 
     <div v-for="commentLocal in comments">
 
         <h1>{{ commentLocal.comment }}</h1>
         <h2>Skickat av: {{ commentLocal.name }}</h2>
-        <h3>Skickat: {{ commentLocal.createdAt }}</h3>
-        <h3>Senast Uppdaterad: {{ commentLocal.updatedAt }}</h3>
+        <h3>Skickat: {{ commentLocal.createdAt.substring(0,10) }} {{ commentLocal.createdAt.substring(11,16)}}</h3>
+
     </div>
 
 </template>
