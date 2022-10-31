@@ -1,10 +1,10 @@
 <script>
 import PostRating from "./PostRating.vue";
 import DisplayStarRating from "./DisplayStarRating.vue";
-import CommentSection from "./CommentSection.vue"
+import CommentSection from "./CommentSection.vue";
 
 export default {
-  components: { PostRating, DisplayStarRating, CommentSection},
+  components: { PostRating, DisplayStarRating, CommentSection },
   data() {
     return {
       singleRecipe: null,
@@ -22,8 +22,8 @@ export default {
   computed: {
     recipe() {
       return this.singleRecipe;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -39,22 +39,30 @@ export default {
           <div v-if="!singleRecipe">No recipe found!</div>
 
           <div v-else class="recipeInfo">
-            <display-star-rating :recipe=recipe></display-star-rating> |
+            <display-star-rating :recipe="recipe"></display-star-rating> |
             {{ this.singleRecipe.ingredients.length }} INGREDIENSER |
             {{ this.singleRecipe.timeInMins }} MINUTER
           </div>
         </div>
-        <img class="recipeImage" :src="singleRecipe.imageUrl" alt="recipeImage" />
+        <img
+          class="recipeImage"
+          :src="singleRecipe.imageUrl"
+          alt="recipeImage"
+        />
       </div>
       <div class="line"></div>
 
       <div style="border-bottom: 1px solid white"></div>
       <div class="instructionsIngredients">
         <div class="ingredients">
-          <b>Ingrienser:</b>
+          <b>Ingredienser:</b>
           <ul style="margin-left: -30px">
-            <li v-for="ingredient in this.singleRecipe.ingredients" :key="ingredient.id">
-              {{ ingredient.name }} {{ ingredient.amount }} {{ ingredient.unit }}
+            <li
+              v-for="ingredient in this.singleRecipe.ingredients"
+              :key="ingredient.id"
+            >
+              - {{ ingredient.name }} {{ ingredient.amount }}
+              {{ ingredient.unit }}
             </li>
           </ul>
         </div>
@@ -63,7 +71,10 @@ export default {
         <div v-else class="instructions">
           <b>Gör så här:</b>
           <ul style="margin-left: -30px">
-            <li v-for="instruction in this.singleRecipe.instructions" :key="instruction.id">
+            <li
+              v-for="instruction in this.singleRecipe.instructions"
+              :key="instruction.id"
+            >
               {{ instruction }}
             </li>
           </ul>
@@ -74,26 +85,23 @@ export default {
       <div class="rating">
         <b>Vad tyckte du om receptet?</b>
         <p>Klicka på en stjärna för att ge ditt betyg!</p>
-        <post-rating :recipe=recipe></post-rating>
+        <post-rating :recipe="recipe"></post-rating>
       </div>
       <br />
       <div class="line"></div>
       <br />
       <div>
-
-        <CommentSection/>
+        <CommentSection />
       </div>
-
-    </div> 
+    </div>
   </div>
-  
 </template>
 
 <style scoped>
 .recipeRecipeContainer {
   display: flex;
   flex-direction: column;
-  width: 800px;
+  width: 1000px;
   align-items: center;
   margin-left: 10px;
   background-color: lightgrey;
@@ -103,6 +111,10 @@ export default {
   font-family: "Courier New", Courier, monospace;
   margin-top: 10px;
   font-size: 18px;
+}
+
+li {
+  margin-bottom: 10px;
 }
 
 h1 {
@@ -142,11 +154,11 @@ h1 {
 }
 
 .ingredients {
-  width: 25%;
+  width: 300px;
 }
 
 .instructions {
-  width: 75%;
+  width: 600px;
 }
 
 .line {

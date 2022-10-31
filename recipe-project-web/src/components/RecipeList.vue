@@ -18,8 +18,8 @@ export default {
           recipe.title.toLowerCase().includes(this.message.toLowerCase())
         );
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -28,15 +28,22 @@ export default {
     <div class="inputBox">
       <search-bar @messageChanged="message = $event"></search-bar>
     </div>
-    <div class="listCard" v-for="recipe in filteredListOfRecipes()" :key="recipe">
-      <router-link class="categoryLink" :to="{ name: 'recipe', params: { recipeId: recipe._id } }">
+    <div
+      class="listCard"
+      v-for="recipe in filteredListOfRecipes()"
+      :key="recipe"
+    >
+      <router-link
+        class="categoryLink"
+        :to="{ name: 'recipe', params: { recipeId: recipe._id } }"
+      >
         <img class="recipeImage" :src="recipe.imageUrl" alt="recipeImage" />
 
         <div class="recipeTextContainer">
           <div class="recipeText">
             <h1 class="recipeTitle">
               {{ recipe.title }}
-              <display-star-rating :recipe=recipe></display-star-rating>
+              <display-star-rating :recipe="recipe"></display-star-rating>
             </h1>
             <p class="recipeDescription">
               {{ recipe.description.substring(0, 180) + "..." }}

@@ -17,7 +17,7 @@ export default {
 
 <template>
   <div class="categoryContainer">
-    <h1>Kategorier</h1>
+    <h2>Kategorier</h2>
 
     <h3 class="categoryTitle">
       <RouterLink class="allCategoriesLink" to="/">Alla Kategorier</RouterLink>
