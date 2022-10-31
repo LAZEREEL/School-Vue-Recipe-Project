@@ -106,10 +106,15 @@ export default {
                         console.log('Success posting, updating comments and running successful-post-method')
                         this.getCommentsMethod();
                         this.successPostingComment();
+                        this.playAudio();
+                        
                     })
                     .catch(error => console.log("Error: " + error));
             }
 
+        },
+        playAudio() {
+            new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_17cba0354b.mp3").play();
         }
 
     }
