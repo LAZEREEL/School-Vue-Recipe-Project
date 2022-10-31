@@ -29,7 +29,7 @@ export default {
 
 <template>
   <div>
-    <div v-if="!singleRecipe">No recipe found!</div>
+    <div v-if="!singleRecipe">Loading...</div>
     <div v-else class="recipeRecipeContainer">
       <div class="recipeInfoBox">
         <div class="recipeDesc">
