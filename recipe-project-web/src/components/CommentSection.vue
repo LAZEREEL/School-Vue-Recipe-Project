@@ -90,29 +90,35 @@ export default {
                 if (this.name == '') {
                     this.name = 'Anonym';
                 }
-
-                this.delay(6900);
-
-                fetch("https://jau21-grupp1-mn2l2rop49wl.sprinto.se/recipes/" + this.selectedRecipeIdTwo + "/comments", {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-                    body: JSON.stringify({ comment: this.comment, name: this.name })
-                }
-                )
-                    .then(response => response.json())
-                    .then(data => {
-                        this.postComment = data
-
-                        console.log('Success posting, updating comments and running successful-post-method')
-                        this.getCommentsMethod();
-                        this.successPostingComment();
-                        this.playAudio();
-                        
-                    })
-                    .catch(error => console.log("Error: " + error));
+                
+                console.log('Delaying!')
+                this.delay(1000).then((()=> this.postFetch()  ));
             }
 
+
         },
+
+        postFetch() {
+            fetch("https://jau21-grupp1-mn2l2rop49wl.sprinto.se/recipes/" + this.selectedRecipeIdTwo + "/comments", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+                body: JSON.stringify({ comment: this.comment, name: this.name })
+            }
+            )
+                .then(response => response.json())
+                .then(data => {
+                    this.postComment = data
+
+                    console.log('Success posting, updating comments and running successful-post-method')
+
+                    this.getCommentsMethod();
+                    this.successPostingComment();
+                    this.playAudio();
+
+                })
+                .catch(error => console.log("Error: " + error));
+        },
+
         playAudio() {
             new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_17cba0354b.mp3").play();
         }
