@@ -56,6 +56,11 @@ export default {
                 .catch(error => console.log("Error: " + error));
             return this.comments;
         },
+        delay(time) {
+
+            return new Promise(resolve => setTimeout(resolve, time));
+
+        },
 
         postCommentMethod() {
 
@@ -85,6 +90,8 @@ export default {
                 if (this.name == '') {
                     this.name = 'Anonym';
                 }
+
+                this.delay(6900);
 
                 fetch("https://jau21-grupp1-mn2l2rop49wl.sprinto.se/recipes/" + this.selectedRecipeIdTwo + "/comments", {
                     method: 'POST',
