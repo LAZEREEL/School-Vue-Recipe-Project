@@ -9,8 +9,6 @@ export default {
             comment: '',
             name: '',
             urlPathName: '',
-
-
         };
     },
     created() {
@@ -27,38 +25,25 @@ export default {
         );
         this.getCommentsMethod();
     },
-    mounted() {
-        var btnSubmit = document.querySelector('.btnSubmit')
-        var container = document.querySelector('#container')
-        var postComment = document.querySelector('.postComment')
-        var hideHeader = document.querySelector('.hideHeader')
 
-        btnSubmit.onclick = function () {
-            container.style.display = 'none';
-            postComment.style.display = 'block';
-            hideHeader.style.display = 'none';
-
-        }
-
-    },
     methods: {
         commentFailed() {
-            var container = document.querySelector('#container')
-            var postComment = document.querySelector('.postComment')
-            var failToComment = document.querySelector('.failToComment')
-
-            postComment.style.display = 'none';
-            container.style.display = 'none';
-            failToComment.style.display = 'block';
+            var inputFieldContainer = document.querySelector('#inputFieldContainer')
+            var sendingCommentHeader = document.querySelector('#sendingCommentHeader')
+            var failToCommentHeader = document.querySelector('#failToCommentHeader')
+            console.log('commentFailed körs')
+            sendingCommentHeader.style.display = 'none';
+            inputFieldContainer.style.display = 'block';
+            failToCommentHeader.style.display = 'block';
         },
- 
+
         successPostingComment() {
-            var container = document.querySelector('#container')
-            var postComment = document.querySelector('.postComment')
-            var successContainer = document.querySelector('.successContainer')
-            container.style.display = 'none';
-            postComment.style.display = 'none';
-            successContainer.style.display = 'block';
+            var inputFieldContainer = document.querySelector('#inputFieldContainer')
+            var sendingCommentHeader = document.querySelector('#sendingCommentHeader')
+            var succesfullyCommentedHeader = document.querySelector('#succesfullyCommentedHeader')
+            inputFieldContainer.style.display = 'none';
+            sendingCommentHeader.style.display = 'none';
+            succesfullyCommentedHeader.style.display = 'block';
         },
         getCommentsMethod() {
             console.log('Nu körs getCommentsMethod')
@@ -74,19 +59,32 @@ export default {
 
         postCommentMethod() {
 
-            console.log(this.selectedRecipeIdTwo)
-            console.log(this.name)
-            console.log(this.comment)
+            console.log('Posting comment..')
+            console.log('ID:' + this.selectedRecipeIdTwo)
+            console.log('Name:' + this.name)
+            console.log('Comment:' + this.comment)
+
+            var inputFieldContainer = document.querySelector('#inputFieldContainer')
+            var sendingCommentHeader = document.querySelector('#sendingCommentHeader')
+            var leaveCommentHeader = document.querySelector('#leaveCommentHeader')
+            var failToCommentHeader = document.querySelector('#failToCommentHeader')
+
+            inputFieldContainer.style.display = 'none';
+            sendingCommentHeader.style.display = 'block';
+            leaveCommentHeader.style.display = 'none';
+            failToCommentHeader.style.display = 'none';
 
             if (this.selectedRecipeIdTwo == undefined) {
-                
+                this.commentFailed();
+                console.log('Failed: No ID!')
             } else if (this.comment == '') {
-                
-            }  else {
-
+                this.commentFailed();
+                console.log('Failed: Empty Comment Field!')
+            } else {
+                console.log('Missing name! Posting as Anonymous!')
                 if (this.name == '') {
-                 this.name = 'Anonym';
-            }
+                    this.name = 'Anonym';
+                }
 
                 fetch("https://jau21-grupp1-mn2l2rop49wl.sprinto.se/recipes/" + this.selectedRecipeIdTwo + "/comments", {
                     method: 'POST',
@@ -98,7 +96,7 @@ export default {
                     .then(data => {
                         this.postComment = data
 
-                        console.log('Success.')
+                        console.log('Success posting, updating comments and running successful-post-method')
                         this.getCommentsMethod();
                         this.successPostingComment();
                     })
@@ -112,22 +110,20 @@ export default {
 </script>
 
 <template>
-    <div v-if="!this.comments">No comments from recipe found</div>
+    <div v-if="!comments">No comments from recipe found</div>
 
-    <h2 class="hideHeader">Lämna en Kommentar</h2>
-    <h2 class="postComment">Din kommentar skickas</h2>
-    <h2 class="failToComment">Din kommentar skickades inte.</h2>
-    <h2 class="successContainer">Tack för din Kommentar</h2>
+    <h2 id="leaveCommentHeader">Lämna en Kommentar</h2>
+    <h2 id="sendingCommentHeader">Din kommentar skickas</h2>
+    <h2 id="failToCommentHeader">Din kommentar skickades inte.</h2>
+    <h2 id="succesfullyCommentedHeader">Tack för din Kommentar</h2>
 
-    <div id="container">
-            <input id='comment' placeholder='Lämna din Kommentar här' name='comment' v-model='comment' />
-            <input id='name' placeholder='Ditt namn' name='name' v-model='name' />
+    <div id="inputFieldContainer">
+        <input id='comment' placeholder='Lämna din Kommentar här' name='comment' v-model='comment' />
+        <input id='name' placeholder='Ditt namn' name='name' v-model='name' />
 
-            <div class="btnSubmit">
-                <button v-if="this.selectedRecipeIdTwo" @click="postCommentMethod">Skicka</button>
-            </div>
+        <button v-if="selectedRecipeIdTwo" @click="postCommentMethod">Skicka</button>
+
     </div>
-
 
     <div v-for="commentLocal in comments">
 
@@ -140,17 +136,15 @@ export default {
 </template>
 
 <style>
-
-
-.successContainer {
+#succesfullyCommentedHeader {
     display: none;
 }
 
-.postComment {
+#sendingCommentHeader {
     display: none;
 }
 
-.failToComment {
+#failToCommentHeader {
     display: none;
 }
 </style>
